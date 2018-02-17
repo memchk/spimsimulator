@@ -54,6 +54,7 @@ void SpimView::DisplayIntRegisters()
     int scrollPosition = te->verticalScrollBar()->value();
 
     windowContents += formatSpecialIntRegister(CYCLES, "CYCLES", CYCLES != oldCYCLES);
+    windowContents += "<br />";
     windowContents += formatSpecialIntRegister(PC, "PC", PC != oldPC);
     windowContents += formatSpecialIntRegister(CP0_EPC, "EPC", CP0_EPC != oldEPC);
     windowContents += formatSpecialIntRegister(CP0_Cause, "Cause", CP0_Cause != oldCause);

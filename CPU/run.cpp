@@ -285,7 +285,7 @@ run_spim (mem_addr initial_PC, int steps_to_run, bool display)
 #endif
 
 	  DO_DELAYED_UPDATE ();
-
+      CYCLES += 1;
 	  switch (OPCODE (inst))
 	    {
 	    case Y_ADD_OP:

@@ -161,6 +161,7 @@ initialize_registers ()
   FWR = (int *) FPR;
 
   memclr (R, R_LENGTH * sizeof (reg_word));
+  CYCLES = 0;
   R[REG_SP] = STACK_TOP - BYTES_PER_WORD - 4096; /* Initialize $sp */
   HI = LO = 0;
   PC = 0;

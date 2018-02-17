@@ -249,6 +249,17 @@ do_syscall ()
 	break;
       }
 
+    case RESET_CYCLES_SYSCALL:
+      {
+    CYCLES = 0;
+    break;
+      }
+    case PRINT_CYCLES_SYSCALL:
+     {
+    /* We subtract one here to not include this syscall in the print out, but still count it the register */
+    write_output(console_out, "Cycles @ %X: %d\n",PC, CYCLES - 1);
+    break;
+     }
     default:
       run_error ("Unknown system call: %d\n", R[REG_V0]);
       break;

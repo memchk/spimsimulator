@@ -60,3 +60,5 @@ void handle_exception ();
 
 #define EXIT2_SYSCALL		17
 
+#define RESET_CYCLES_SYSCALL    40
+#define PRINT_CYCLES_SYSCALL    41
