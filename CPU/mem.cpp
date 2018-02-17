@@ -48,6 +48,7 @@ double *FPR;			/* Dynamically allocate so overlay */
 float *FGR;			/* is possible */
 int *FWR;			/* is possible */
 reg_word CCR[4][32], CPR[4][32];
+reg_word CYCLES;
 
 instruction **text_seg;
 bool text_modified;		/* => text segment was written */

@@ -43,6 +43,9 @@ extern reg_word R[R_LENGTH];
 
 extern reg_word HI, LO;
 
+/* Special register for keeping track of clock cycles consumed. */
+extern reg_word CYCLES;
+
 extern mem_addr PC, nPC;
 
 

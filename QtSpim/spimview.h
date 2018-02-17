@@ -169,7 +169,7 @@ Q_OBJECT
     reg_word oldStatus;
     reg_word oldHI;
     reg_word oldLO;
-
+    reg_word oldCYCLES;
 
     // Single precision FP registers window
     //
