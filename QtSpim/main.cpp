@@ -46,7 +46,7 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     QCoreApplication::setOrganizationName("LarusStone");
     QCoreApplication::setOrganizationDomain("larusstone.org");
-    QCoreApplication::setApplicationName("QtSpim");
+    QCoreApplication::setApplicationName("QtSpim UTD");
 
     App = &a;
     SpimView win;

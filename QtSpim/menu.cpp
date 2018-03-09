@@ -460,6 +460,10 @@ void SpimView::sim_Settings()
     Ui::SpimSettingDialog sd;
     sd.setupUi(&d);
 
+    // Disable CPI Table
+    //TODO: Finish CPI Table, remove this line when done
+    sd.tabWidget->setTabEnabled(2, false);
+
     sd.bareMachineCheckBox->setChecked(bare_machine);
     sd.pseudoInstCheckBox->setChecked(accept_pseudo_insts);
     sd.delayedBranchCheckBox->setChecked(delayed_branches);
@@ -527,6 +531,9 @@ void SpimView::sim_Settings()
     QColorDialog* textWinBackgroundDialog = new QColorDialog(st_textWinBackgroundColor);
     QObject::connect(sd.textWinBackgroundToolButton, SIGNAL(clicked()), textWinBackgroundDialog, SLOT(exec()));
     QObject::connect(textWinBackgroundDialog, SIGNAL(colorSelected(QColor)), &sd, SLOT(setTextWinBackground(QColor)));
+
+    // CPI Menu
+    //QObject::connect(sd.cpiTableDefaultButton, SIGNAL(clicked()), SLOT())
 
     if (d.exec() == QDialog::Accepted)
     {
@@ -813,7 +820,8 @@ void SpimView::help_ViewHelp()
     QProcess *process = new QProcess;
     QStringList args;
 
-    QString helpFile[] = {qgetenv("PROGRAMFILES") + QString("/QtSpim/help/qtspim.qhc"), // Windows
+    QString helpFile[] = {QString("./help/qtspim.qhc"),
+                          qgetenv("PROGRAMFILES") + QString("/QtSpim UTD/help/qtspim.qhc"), // Windows
                           QString("/Applications/QtSpim.app/Contents/Resources/doc/qtspim.qhc"), // Mac
                           QString("/usr/lib/qtspim/help/qtspim.qhc"), // Linux
                           0};
@@ -855,17 +863,18 @@ void SpimView::help_ViewHelp()
 void SpimView::help_AboutSPIM()
 {
     QMessageBox box(QMessageBox::NoIcon,
-                    "About QtSpim",
+                    "About QtSpim UTD",
                     QString("<span style='font-size: 16pt;'>"
-                            "<center><strong>QtSpim</strong></center>"
+                            "<center><strong>QtSpim UTD</strong></center>"
                             "<center><img src=':/icons/qtspim.png'>"
                             "<span style='font-size: 10pt;'>")
                     + QString("<p>") + QString(SPIM_VERSION) + QString("</p>")
                     + QString ("<p>SPIM is a simulator of the MIPS R3000 processor.</p>"
                                "<p>Copyright (c) 1990-2015, James R. Larus (larus@larusstone.org).</p>"
+                               "<p>Modified for the Univeristy of Texas at Dallas by Carson Page.</p>"
                                "<p>SPIM is distributed under a BSD license.</p>"
                                "<p>For more information, source code, and binaries:</p>"
-                               "<p><a href='https://sourceforge.net/projects/spimsimulator/'>https://sourceforge.net/projects/spimsimulator/</a></p>"
+                               "<p><a href='https://github.com/memchk/spimsimulator'>https://github.com/memchk/spimsimulator</a></p>"
                                "<p>QtSPIM is linked to the Qt library, which is distributed under the GNU Lesser General Public License version 3 and GNU Lesser General Public License version 2.1.</p>"
 "<p><a href='http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html'>GNU Lesser General Public License, version 2.1</a></p>"
 "<p><a href='http://www.gnu.org/licenses/lgpl-3.0.html'>GNU Lesser General Public License, version 3</a></p>"

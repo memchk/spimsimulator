@@ -285,7 +285,7 @@ run_spim (mem_addr initial_PC, int steps_to_run, bool display)
 #endif
 
 	  DO_DELAYED_UPDATE ();
-      CYCLES += 1;
+      int cyclesUpdate = 1;
 	  switch (OPCODE (inst))
 	    {
 	    case Y_ADD_OP:
@@ -495,6 +495,7 @@ run_spim (mem_addr initial_PC, int steps_to_run, bool display)
 		  LO = (reg_word) R[RS (inst)] / (reg_word) R[RT (inst)];
 		  HI = (reg_word) R[RS (inst)] % (reg_word) R[RT (inst)];
 		}
+          cyclesUpdate = 19;
 	      break;
 
 	    case Y_DIVU_OP:
@@ -507,6 +508,7 @@ run_spim (mem_addr initial_PC, int steps_to_run, bool display)
 		  LO = (u_reg_word) R[RS (inst)] / (u_reg_word) R[RT (inst)];
 		  HI = (u_reg_word) R[RS (inst)] % (u_reg_word) R[RT (inst)];
 		}
+          cyclesUpdate = 19;
 	      break;
 
 	    case Y_ERET_OP:
@@ -552,18 +554,21 @@ run_spim (mem_addr initial_PC, int steps_to_run, bool display)
 	      LOAD_INST (&R[RT (inst)],
 			 read_mem_byte (R[BASE (inst)] + IOFFSET (inst)),
 			 0xffffffff);
+          cyclesUpdate = 2;
 	      break;
 
 	    case Y_LBU_OP:
 	      LOAD_INST (&R[RT (inst)],
 			 read_mem_byte (R[BASE (inst)] + IOFFSET (inst)),
 			 0xff);
+          cyclesUpdate = 2;
 	      break;
 
 	    case Y_LH_OP:
 	      LOAD_INST (&R[RT (inst)],
 			 read_mem_half (R[BASE (inst)] + IOFFSET (inst)),
 			 0xffffffff);
+          cyclesUpdate = 2;
 	      break;
 
 	    case Y_LHU_OP:
@@ -577,6 +582,7 @@ run_spim (mem_addr initial_PC, int steps_to_run, bool display)
 	      LOAD_INST (&R[RT (inst)],
 			 read_mem_word (R[BASE (inst)] + IOFFSET (inst)),
 			 0xffffffff);
+          cyclesUpdate = 2;
 	      break;
 
 	    case Y_LUI_OP:
@@ -587,6 +593,7 @@ run_spim (mem_addr initial_PC, int steps_to_run, bool display)
 	      LOAD_INST (&R[RT (inst)],
 			 read_mem_word (R[BASE (inst)] + IOFFSET (inst)),
 			 0xffffffff);
+          cyclesUpdate = 2;
 	      break;
 
 	    case Y_LDC2_OP:
@@ -720,6 +727,7 @@ run_spim (mem_addr initial_PC, int steps_to_run, bool display)
 		  }
 		LO = tmp;
 		HI = hi + HI;
+        cyclesUpdate = 6;
 		break;
 	      }
 
@@ -772,6 +780,7 @@ run_spim (mem_addr initial_PC, int steps_to_run, bool display)
 		  }
 		LO = tmp;
 		HI = hi - HI;
+        cyclesUpdate = 6;
 		break;
 	      }
 
@@ -816,14 +825,17 @@ run_spim (mem_addr initial_PC, int steps_to_run, bool display)
 	    case Y_MUL_OP:
 	      signed_multiply(R[RS (inst)], R[RT (inst)]);
 	      R[RD (inst)] = LO;
+          cyclesUpdate = 5;
 	      break;
 
 	    case Y_MULT_OP:
 	      signed_multiply(R[RS (inst)], R[RT (inst)]);
+          cyclesUpdate = 5;
 	      break;
 
 	    case Y_MULTU_OP:
 	      unsigned_multiply (R[RS (inst)], R[RT (inst)]);
+          cyclesUpdate = 5;
 	      break;
 
 	    case Y_NOR_OP:
@@ -1635,7 +1647,7 @@ run_spim (mem_addr initial_PC, int steps_to_run, bool display)
 
 	  /* After instruction executes: */
 	  PC += BYTES_PER_WORD;
-
+      CYCLES += cyclesUpdate;
 	  if (exception_occurred)
 	    {
 	      handle_exception ();

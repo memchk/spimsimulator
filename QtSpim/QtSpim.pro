@@ -43,9 +43,12 @@ QT       += core widgets printsupport
 TARGET = QtSpim
 TEMPLATE = app
 
+include(flex.pri)
+include(bison.pri)
 
-YACCSOURCES = ../CPU/parser.y
-LEXSOURCES  = ../CPU/scanner.l
+
+BISONSOURCES = ../CPU/parser.y
+FLEXSOURCES  = ../CPU/scanner.l
 #CONFIG      += yacc_no_name_mangle
 
 SOURCES += main.cpp\
@@ -94,15 +97,15 @@ RESOURCES = windows_images.qrc exception.qrc
 win32:RC_FILE = qtspim.rc
 
 
-QMAKE_YACC          = bison
-QMAKE_YACCFLAGS     = -d --defines=parser.tab.h --output=parser.tab.cpp
-QMAKE_YACCFLAGS_MANGLE = -p yy
-QMAKE_YACC_HEADER   = parser.tab.h
-QMAKE_YACC_SOURCE   = parser.tab.cpp
+#QMAKE_YACC          = bison
+#QMAKE_YACCFLAGS     = -d --defines=parser.tab.h --output=parser.tab.cpp
+#QMAKE_YACCFLAGS_MANGLE = -p yy
+#QMAKE_YACC_HEADER   = parser.tab.h
+#QMAKE_YACC_SOURCE   = parser.tab.cpp
 
-QMAKE_LEX           = flex
-QMAKE_LEXFLAGS_MANGLE = -Pyy
-QMAKE_LEXFLAGS      = -I -8 --outfile=lex.scanner.c
+#QMAKE_LEX           = flex
+#QMAKE_LEXFLAGS_MANGLE = -Pyy
+#QMAKE_LEXFLAGS      = -I -8 --outfile=lex.scanner.c
 
 
 # Help file
@@ -122,8 +125,9 @@ HELP_COL_PROJ       = help/qtspim.qhcp
 buildhelpcollection.name    = Build help collection
 buildhelpcollection.input   = HELP_COL_PROJ
 buildhelpcollection.output  = help/${QMAKE_FILE_BASE}.qhc
-linux|macx:buildhelpcollection.commands= bash -c '\"pushd ${QMAKE_FILE_PATH}; qcollectiongenerator ${QMAKE_FILE_BASE}.qhcp; popd; $(MOVE) ${QMAKE_FILE_PATH}/${QMAKE_FILE_BASE}.qhc ${QMAKE_FILE_OUT};\"'
-win32:buildhelpcollection.commands= cmd -c '\"pushd ${QMAKE_FILE_PATH} & qcollectiongenerator ${QMAKE_FILE_BASE}.qhcp & popd & $(MOVE) ${QMAKE_FILE_PATH}\\${QMAKE_FILE_BASE}.qhc ${QMAKE_FILE_OUT}\"'
+#linux|macx:buildhelpcollection.commands= bash -c '\"pushd ${QMAKE_FILE_PATH}; qcollectiongenerator ${QMAKE_FILE_BASE}.qhcp; popd; $(MOVE) ${QMAKE_FILE_PATH}/${QMAKE_FILE_BASE}.qhc ${QMAKE_FILE_OUT};\"'
+#win32:buildhelpcollection.commands= cmd -c '\"pushd ${QMAKE_FILE_PATH} & qcollectiongenerator ${QMAKE_FILE_BASE}.qhcp & popd & $(MOVE) ${QMAKE_FILE_PATH}\\${QMAKE_FILE_BASE}.qhc ${QMAKE_FILE_OUT}\"'
+buildhelpcollection.commands= qcollectiongenerator ${QMAKE_FILE_IN} -o ${QMAKE_FILE_OUT}
 buildhelpcollection.CONFIG  = no_link recursive
 
 QMAKE_EXTRA_COMPILERS       += buildcompressedhelp buildhelpcollection
@@ -132,32 +136,45 @@ POST_TARGETDEPS             += help/qtspim.qch help/qtspim.qhc
 
 # Microsoft Visual C compiler flags
 #
-win32-msvc2008 {
+#win32-msvc2008 {
+#  # Compile all files as C++
+#  #
+#  QMAKE_CFLAGS_DEBUG    += -TP
+#  QMAKE_CFLAGS_RELEASE  += -TP
+
+#  # Disable security warnings
+#  #
+#  DEFINES += _CRT_SECURE_NO_WARNINGS
+#}
+#win32-msvc2010 {
+#  # Compile all files as C++
+#  #
+#  QMAKE_CFLAGS_DEBUG    += -TP
+#  QMAKE_CFLAGS_RELEASE  += -TP
+
+#  # Disable security warnings
+#  #
+#  DEFINES += _CRT_SECURE_NO_WARNINGS
+#}
+#win32-msvc2012 {
+#  # Compile all files as C++
+#  #
+#  QMAKE_CFLAGS_DEBUG    += -TP
+#  QMAKE_CFLAGS_RELEASE  += -TP
+
+#  # Disable security warnings
+#  #
+#  DEFINES += _CRT_SECURE_NO_WARNINGS
+#}
+
+win32-msvc {
   # Compile all files as C++
   #
-  QMAKE_CFLAGS_DEBUG    += -TP
-  QMAKE_CFLAGS_RELEASE  += -TP
+  QMAKE_CFLAGS_DEBUG    += -TP -Zc:strictStrings-
+  QMAKE_CFLAGS_RELEASE  += -TP -Zc:strictStrings-
 
-  # Disable security warnings
-  #
-  DEFINES += _CRT_SECURE_NO_WARNINGS
-}
-win32-msvc2010 {
-  # Compile all files as C++
-  #
-  QMAKE_CFLAGS_DEBUG    += -TP
-  QMAKE_CFLAGS_RELEASE  += -TP
-
-  # Disable security warnings
-  #
-  DEFINES += _CRT_SECURE_NO_WARNINGS
-}
-win32-msvc2012 {
-  # Compile all files as C++
-  #
-  QMAKE_CFLAGS_DEBUG    += -TP
-  QMAKE_CFLAGS_RELEASE  += -TP
-
+  QMAKE_CXXFLAGS_DEBUG    += -Zc:strictStrings-
+  QMAKE_CXXFLAGS_RELEASE  += -Zc:strictStrings-
   # Disable security warnings
   #
   DEFINES += _CRT_SECURE_NO_WARNINGS

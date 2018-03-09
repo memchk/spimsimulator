@@ -156,6 +156,7 @@ Q_OBJECT
     // Integer registers window
     //
     QString formatSpecialIntRegister(int value, char* name, bool changed);
+    QString formatCyclesRegister(bool changed);
     QString formatIntRegister(int regNum, int value, char* name, bool changed);
 
     // Value in register at previous call on displayIntRegister, so changed values

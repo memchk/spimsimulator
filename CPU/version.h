@@ -1,1 +1,1 @@
-#define SPIM_VERSION "Version 9.1.20 of August 29, 2017"
+#define SPIM_VERSION "Version 1.0.0 of March 8, 2018"

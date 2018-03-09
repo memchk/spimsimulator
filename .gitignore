@@ -1,0 +1,6 @@
+build-QtSpim*
+QtSpim/QtSpim.pro.user
+Setup/**/cache
+Setup/**/*.wixobj
+Setup/**/*.msi
+Setup/**/*.wixpdb

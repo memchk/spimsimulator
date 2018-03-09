@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='windows-1252'?>
 <Wix xmlns='http://schemas.microsoft.com/wix/2006/wi'>
-  <Product Name='QtSpim' Manufacturer='LarusStone'
-           Id='bf588941-3a73-421f-a619-cdabff1acbc7'
-           UpgradeCode='acf14497-9bbe-4d3d-b0b2-7b599eb18984'
-           Language='1033' Codepage='1252' Version='9.1.19'>
-    <Package Id='*' Keywords='Installer' Description='QtSpim Installer'
-             Comments='Copyright by James R. Larus. All rights reserved.'
-             Manufacturer='LarusStone' InstallerVersion='100' Languages='1033'
+  <Product Name='QtSpim UTD' Manufacturer='LarusStone and Carson Page'
+           Id='11e1add0-c772-4fdd-b5fb-2c8881cc2475'
+           UpgradeCode='11c06bad-37af-4ee9-9f95-2ceaece740ec'
+           Language='1033' Codepage='1252' Version='1.0.0'>
+    <Package Id='*' Keywords='Installer' Description='QtSpim UTD Installer'
+             Comments='Copyright by James R. Larus. All rights reserved. Modifications for the University of Texas at Dallas by Carson Page.'
+             Manufacturer='LarusStone and Carson Page' InstallerVersion='100' Languages='1033'
              Compressed='yes' SummaryCodepage='1252' />
 
     <Media Id='1' Cabinet='QtSpim.cab' EmbedCab='yes' DiskPrompt='CD-ROM #1' />
@@ -21,17 +21,17 @@
 
     <Directory Id='TARGETDIR' Name='SourceDir'>
       <Directory Id='ProgramFilesFolder'>
-        <Directory Id='APPLICATIONROOTDIRECTORY' Name='QtSpim.'>
+        <Directory Id='APPLICATIONROOTDIRECTORY' Name='QtSpim UTD.'>
 
           <!-- C:/Program Files/QtSpim: -->
           <Component Id='QtSpimExecutable' Guid='d1d697b9-71fe-4e5c-8aad-afc197d44e65'>
             <File Id='QtSpimEXE' Name='QtSpim.exe' DiskId='1'
                   Source='cache/QtSpim.exe'
                   KeyPath='yes' Checksum='yes'>
-              <Shortcut Id='startmenuQtSpim' Directory='ProgramMenuDir' Name='QtSpim'
+              <Shortcut Id='startmenuQtSpim' Directory='ProgramMenuDir' Name='QtSpim UTD'
                         WorkingDirectory='APPLICATIONROOTDIRECTORY' Icon='QtSpim.exe' IconIndex='0'
 						Advertise='yes' />
-              <Shortcut Id='desktopQtSpim' Directory='DesktopFolder' Name='QtSpim'
+              <Shortcut Id='desktopQtSpim' Directory='DesktopFolder' Name='QtSpim UTD'
                         WorkingDirectory='APPLICATIONROOTDIRECTORY' Icon='QtSpim.exe' IconIndex='0'
 						Advertise='yes' />
             </File>
@@ -64,10 +64,10 @@
 
 
 		  <!-- DLLs: -->
-          <Component Id='Qt5CLuceneDLL' Guid='ef727b9a-a2b7-472f-a12f-b78600547bef'>
+          <!-- <Component Id='Qt5CLuceneDLL' Guid='ef727b9a-a2b7-472f-a12f-b78600547bef'>
             <File Id='Qt5CLuceneDLL' Name='Qt5CLucene.dll' DiskId='1'
                   Source='cache/Qt5CLucene.dll' KeyPath='yes' />
-          </Component>
+          </Component> -->
 
           <Component Id='Qt5CoreDLL' Guid='9d3a2e2a-7205-4dc6-b7bd-286f90252716'>
             <File Id='Qt5CoreDLL' Name='Qt5Core.dll' DiskId='1'
@@ -139,22 +139,22 @@
                   Source='cache/Qt5WebChannel.dll' KeyPath='yes' />
           </Component>
 
-          <Component Id='Qt5WebKitDLL' Guid='71428487-094e-4585-bbad-97e12d30c20f'>
+          <!-- <Component Id='Qt5WebKitDLL' Guid='71428487-094e-4585-bbad-97e12d30c20f'>
             <File Id='Qt5WebKitDLL' Name='Qt5WebKit.dll' DiskId='1'
                   Source='cache/Qt5WebKit.dll' KeyPath='yes' />
-          </Component>
+          </Component> -->
 
-          <Component Id='Qt5WebKitWidgetsDLL' Guid='59062299-f544-48e3-891f-099dd808d576'>
+          <!-- <Component Id='Qt5WebKitWidgetsDLL' Guid='59062299-f544-48e3-891f-099dd808d576'>
             <File Id='Qt5WebKitWidgetsDLL' Name='Qt5WebKitWidgets.dll' DiskId='1'
                   Source='cache/Qt5WebKitWidgets.dll' KeyPath='yes' />
-          </Component>
+          </Component>-->
 
           <Component Id='Qt5WidgetsDLL' Guid='a5fad59a-1f46-4c83-9218-c563f7f3109f'>
             <File Id='Qt5WidgetsDLL' Name='Qt5Widgets.dll' DiskId='1'
                   Source='cache/Qt5Widgets.dll' KeyPath='yes' />
           </Component>
 
-		  <Component Id='icudt54DLL' Guid='669b7856-7345-4649-8203-bba8896e199a'>
+		  <!-- <Component Id='icudt54DLL' Guid='669b7856-7345-4649-8203-bba8896e199a'>
             <File Id='icudt54DLL' Name='icudt54.dll' DiskId='1'
                   Source='cache/icudt54.dll' KeyPath='yes' />
           </Component>
@@ -167,7 +167,7 @@
 		  <Component Id='icuin54DLL' Guid='1ff8989c-6513-4c4f-8e1b-88ca61e8fdd4'>
             <File Id='icuin54DLL' Name='icuin54.dll' DiskId='1'
                   Source='cache/icuin54.dll' KeyPath='yes' />
-          </Component>
+          </Component> -->
 
 		  <Component Id='libEGLDLL' Guid='7d3c9486-5bca-4492-8096-4a134c9e2850'>
             <File Id='libEGLDLL' Name='libEGL.dll' DiskId='1'
@@ -250,7 +250,7 @@
 	  <ComponentRef Id='NewIcon' />
 	  <ComponentRef Id='NewIcon256x256' />
 	  <ComponentRef Id='HelloWorld' />
-	  <ComponentRef Id='Qt5CLuceneDLL' />
+	  <!-- <ComponentRef Id='Qt5CLuceneDLL' /> -->
 	  <ComponentRef Id='Qt5CoreDLL' />
 	  <ComponentRef Id='Qt5GuiDLL' />
 	  <ComponentRef Id='Qt5HelpDLL' />
@@ -265,12 +265,12 @@
 	  <ComponentRef Id='Qt5SensorsDLL' />
 	  <ComponentRef Id='Qt5SqlDLL' />
 	  <ComponentRef Id='Qt5WebChannelDLL' />
-	  <ComponentRef Id='Qt5WebKitDLL' />
-	  <ComponentRef Id='Qt5WebKitWidgetsDLL' />
+	  <!-- <ComponentRef Id='Qt5WebKitDLL' />
+	  <ComponentRef Id='Qt5WebKitWidgetsDLL' /> -->
 	  <ComponentRef Id='Qt5WidgetsDLL' />
-	  <ComponentRef Id='icudt54DLL' />
+	  <!-- <ComponentRef Id='icudt54DLL' />
 	  <ComponentRef Id='icuuc54DLL' />
-	  <ComponentRef Id='icuin54DLL' />
+	  <ComponentRef Id='icuin54DLL' /> -->
 	  <ComponentRef Id='libEGLDLL' />
 	  <ComponentRef Id='libGLESv2DLL' />
 	  <ComponentRef Id='qjpegDLL' />

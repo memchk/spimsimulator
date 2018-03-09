@@ -5,8 +5,8 @@
 # Usage: release-win
 #
 
-RELEASE_DIR="build_Release"
-QT_DIR="C:\OSS\Qt\5.5\msvc2013"
+RELEASE_DIR="build-QtSpim-Desktop_Qt_5_10_1_MSVC2017_64bit-Release"
+QT_DIR="C:\Qt\5.10.1\msvc2017_64"
 QT_BIN_DIR=$QT_DIR/bin
 QT_PLUGIN_DIR=$QT_DIR/plugins
 
@@ -21,7 +21,7 @@ cp -p $QT_BIN_DIR/assistant.exe $CACHE_DIR
 
 cp -pr $RELEASE_DIR/help $CACHE_DIR
 
-cp -p $QT_BIN_DIR/Qt5CLucene.dll $CACHE_DIR
+#cp -p $QT_BIN_DIR/Qt5CLucene.dll $CACHE_DIR
 cp -p $QT_BIN_DIR/Qt5Core.dll $CACHE_DIR
 cp -p $QT_BIN_DIR/Qt5Gui.dll $CACHE_DIR
 cp -p $QT_BIN_DIR/Qt5Help.dll $CACHE_DIR
@@ -36,13 +36,13 @@ cp -p $QT_BIN_DIR/Qt5Quick.dll $CACHE_DIR
 cp -p $QT_BIN_DIR/Qt5Sensors.dll $CACHE_DIR
 cp -p $QT_BIN_DIR/Qt5Sql.dll $CACHE_DIR
 cp -p $QT_BIN_DIR/Qt5WebChannel.dll $CACHE_DIR
-cp -p $QT_BIN_DIR/Qt5WebKit.dll $CACHE_DIR
-cp -p $QT_BIN_DIR/Qt5WebKitWidgets.dll $CACHE_DIR
+#cp -p $QT_BIN_DIR/Qt5WebKit.dll $CACHE_DIR
+#cp -p $QT_BIN_DIR/Qt5WebKitWidgets.dll $CACHE_DIR
 cp -p $QT_BIN_DIR/Qt5Widgets.dll $CACHE_DIR
 
-cp -p $QT_BIN_DIR/icudt54.dll $CACHE_DIR
-cp -p $QT_BIN_DIR/icuuc54.dll $CACHE_DIR
-cp -p $QT_BIN_DIR/icuin54.dll $CACHE_DIR
+#cp -p $QT_BIN_DIR/icudt54.dll $CACHE_DIR
+#cp -p $QT_BIN_DIR/icuuc54.dll $CACHE_DIR
+#cp -p $QT_BIN_DIR/icuin54.dll $CACHE_DIR
 
 cp -p $QT_BIN_DIR/libEGL.dll $CACHE_DIR
 cp -p $QT_BIN_DIR/libGLESv2.dll $CACHE_DIR

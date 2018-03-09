@@ -53,7 +53,7 @@ void SpimView::DisplayIntRegisters()
     QString windowContents = windowFormattingStart(st_regWinFont, st_regWinFontColor, st_regWinBackgroundColor);
     int scrollPosition = te->verticalScrollBar()->value();
 
-    windowContents += formatSpecialIntRegister(CYCLES, "CYCLES", CYCLES != oldCYCLES);
+    windowContents += formatCyclesRegister(CYCLES != oldCYCLES);
     windowContents += "<br />";
     windowContents += formatSpecialIntRegister(PC, "PC", PC != oldPC);
     windowContents += formatSpecialIntRegister(CP0_EPC, "EPC", CP0_EPC != oldEPC);
@@ -90,6 +90,12 @@ QString SpimView::formatSpecialIntRegister(int value, char* name, bool changed)
                      changed);
 }
 
+QString SpimView::formatCyclesRegister(bool changed)
+{
+    return formatReg(QString("<b>") % QString("CYCLES(int)") % QString("</b>"),
+                     QString::number(CYCLES, 10),
+                     changed);
+}
 
 QString SpimView::formatIntRegister(int regNum, int value, char* name, bool changed)
 {

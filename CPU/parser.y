@@ -465,14 +465,11 @@ typedef struct ll
 
 
 /* Exported Variables: */
-
 bool data_dir;                  /* => item in data segment */
 
 bool text_dir;                  /* => item in text segment */
 
 bool parse_error_occurred;      /* => parse resulted in error */
-
-
 /* Local functions: */
 
 static imm_expr *branch_offset (int n_inst);

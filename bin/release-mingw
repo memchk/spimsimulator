@@ -5,8 +5,8 @@
 # Usage: release-win
 #
 
-RELEASE_DIR="build_Release"
-QT_DIR="C:\Qt\5.9.1\mingw53_32"
+RELEASE_DIR="build-QtSpim-Desktop_Qt_5_10_1_MinGW_32bit-Release"
+QT_DIR="/mnt/c/Qt/5.10.1/mingw53_32"
 QT_BIN_DIR=$QT_DIR/bin
 QT_PLUGIN_DIR=$QT_DIR/plugins
 

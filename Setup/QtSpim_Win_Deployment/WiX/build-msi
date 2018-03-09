@@ -5,5 +5,5 @@
 # Usage: build-msi
 #
 
-candle QtSpim.wxs
-light -ext WixUIExtension -cultures:en-us QtSpim.wixobj -out QtSpim.msi
+candle.exe QtSpim.wxs
+light.exe -ext WixUIExtension -cultures:en-us QtSpim.wixobj -out QtSpim.msi
